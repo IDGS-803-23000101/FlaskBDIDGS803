@@ -1,0 +1,48 @@
+{% extends "layout.html" %} 
+{% block container %} 
+{% import "_macros.html" as macros %}
+
+<div class="w-full max-w-5xl space-y-6">
+  <div class="flex h-screen justify-center items-center">
+    <div class="flex flex-col items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs md:flex-row md:max-w-xl w-full">
+      
+      <div class="flex flex-col justify-between md:p-4 leading-normal w-full">
+        <h5 class="mb-4 text-2xl font-bold tracking-tight text-heading text-center">
+          Detalles del Alumno
+        </h5>
+
+        {# Formulario para mostrar/editar datos #}
+        <form action="" method="POST" novalidate class="space-y-4">
+          {{ form.csrf_token }}
+
+          <div class="mb-3">
+            {{ macros.campoNuevo(form.nombre, value=nombre, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+          </div>
+
+          <div class="mb-3">
+            {{ macros.campoNuevo(form.apaterno, value=apaterno, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+          </div>
+
+          <div class="mb-3">
+            {{ macros.campoNuevo(form.amaterno, value=amaterno, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+          </div>
+
+          <div class="mb-3">
+            {{ macros.campoNuevo(form.email, value=correo, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+          </div>
+
+          <div class="flex gap-4 mt-6">
+            <a href="{{ url_for('index') }}" class="w-full text-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium font-medium rounded-base text-sm px-4 py-2.5 transition-all">
+              Regresar
+            </a>
+            <button type="submit" class="w-full text-white bg-brand hover:bg-brand-strong font-medium rounded-base text-sm px-4 py-2.5">
+              Actualizar
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

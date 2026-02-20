@@ -30,66 +30,28 @@
             </tr>
         </thead>
         <tbody>
+            {% for alum in alumno %}
             <tr class="bg-neutral-primary">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                    José Rogelio
+                    {{alum.nombre}}
                 </th>
                 <td class="px-6 py-4">
-                    Echeveste Mendiola
+                    {{alum.apaterno}}
                 </td>
                 <td class="px-6 py-4">
-                    82689@alumnos.utleon.edu.mx
+                    {{alum.email}}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-indigo-600 hover:text-indigo-900">Editar</a>
+                    <a href="modificar?id={{ alum.id }}" class="font-bold text-indigo-600 hover:text-indigo-900">Editar</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-emerald-600 hover:text-emerald-900">Detalles</a>
+                    <a href="detalles?id={{ alum.id }}" class="font-bold text-emerald-600 hover:text-emerald-900">Detalles</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
+                    <a href="eliminar?={{ alum.id }}" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
                 </td>
             </tr>
-            <tr class="bg-neutral-primary">
-                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                    Estefania Isabel
-                </th>
-                <td class="px-6 py-4">
-                    Arellano Martinez
-                </td>
-                <td class="px-6 py-4">
-                    @alumnos.utleon.edu.mx
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-indigo-600 hover:text-indigo-900">Editar</a>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-emerald-600 hover:text-emerald-900">Detalles</a>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
-                </td>
-            </tr>
-            <tr class="bg-neutral-primary">
-                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                    José Luis Uriel
-                </th>
-                <td class="px-6 py-4">
-                   Zavala Zavala
-                </td>
-                <td class="px-6 py-4">
-                    @alumnos.utleon.edu.mx
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-indigo-600 hover:text-indigo-900">Editar</a>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-emerald-600 hover:text-emerald-900">Detalles</a>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
-                </td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

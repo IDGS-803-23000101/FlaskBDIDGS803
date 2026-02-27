@@ -16,13 +16,13 @@
       placeholder:text-body") }}
     </div>
     <div class="mb-5">
-      {{ macros.campoNuevo(form.apaterno, class="bg-neutral-secondary-medium
+      {{ macros.campoNuevo(form.apellidos, class="bg-neutral-secondary-medium
       border border-default-medium text-heading text-sm rounded-base
       focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs
       placeholder:text-body") }}
     </div>
     <div class="mb-5">
-      {{ macros.campoNuevo(form.amaterno, class="bg-neutral-secondary-medium
+      {{ macros.campoNuevo(form.telefono, class="bg-neutral-secondary-medium
       border border-default-medium text-heading text-sm rounded-base
       focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs
       placeholder:text-body") }}
@@ -39,5 +39,8 @@
     >
       Eliminar
     </button>
+    <a href="{{ url_for('index') }}" class="w-full text-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium font-medium rounded-base text-sm px-4 py-2.5 transition-all">
+              Regresar
+            </a>
   </form>
 {% endblock %}

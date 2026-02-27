@@ -7,6 +7,15 @@
     <div class="flex flex-col items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs md:flex-row md:max-w-xl w-full">
       
       <div class="flex flex-col justify-between md:p-4 leading-normal w-full">
+        
+        <div class="flex justify-center mb-6">
+          <img 
+            src="{{ url_for('static', filename='img/usuario_default.png') }}" 
+            alt="Foto del alumno" 
+            class="w-32 h-32 rounded-full object-cover border-4 border-default shadow-md"
+          >
+        </div>
+
         <h5 class="mb-4 text-2xl font-bold tracking-tight text-heading text-center">
           Detalles del Alumno
         </h5>
@@ -20,11 +29,11 @@
           </div>
 
           <div class="mb-3">
-            {{ macros.campoNuevo(form.apaterno, value=apaterno, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+            {{ macros.campoNuevo(form.apellidos, value=apellidos, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
           </div>
 
           <div class="mb-3">
-            {{ macros.campoNuevo(form.amaterno, value=amaterno, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
+            {{ macros.campoNuevo(form.telefono, value=telefono, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5") }}
           </div>
 
           <div class="mb-3">
@@ -35,9 +44,6 @@
             <a href="{{ url_for('index') }}" class="w-full text-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium font-medium rounded-base text-sm px-4 py-2.5 transition-all">
               Regresar
             </a>
-            <button type="submit" class="w-full text-white bg-brand hover:bg-brand-strong font-medium rounded-base text-sm px-4 py-2.5">
-              Actualizar
-            </button>
           </div>
         </form>
 

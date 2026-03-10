@@ -17,8 +17,9 @@ app.config['SECRET_KEY'] = 'una_clave_muy_secreta_123'
 csrf=CSRFProtect(app)
 app.config.from_object(DevelopmentConfig)
 db.init_app(app)
-migrate = Migrate(app, db)
 app.register_blueprint(maestros)
+migrate = Migrate(app, db)
+
 
 @app.errorhandler(404)
 def page_not_found(e):

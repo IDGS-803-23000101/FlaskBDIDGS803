@@ -1,13 +1,13 @@
-from wtforms import Form
-from wtforms import StringField, IntegerField, PasswordField
+from flask_wtf import FlaskForm  # Cambiar esta importación
+from wtforms import StringField, IntegerField
 from wtforms import EmailField
 from wtforms import validators
 
-class UserForm(Form):
-    id= IntegerField('Id')
+class UserForm(FlaskForm): # Cambiar Form por FlaskForm
+    id = IntegerField('Id')
     nombre = StringField('Nombre', [
         validators.DataRequired(message='El campo es requerido'),
-        validators.length(min=4,max=10,message='Ingrese nombre valido')])
+        validators.length(min=4, max=10, message='Ingrese nombre valido')])
     apellidos = StringField('Apellidos', [
         validators.DataRequired(message='El campo es requerido')])
     telefono = StringField('Telefono', [
@@ -16,7 +16,7 @@ class UserForm(Form):
         validators.Email(message='Ingrese un correo valido')
     ])
     
-class MaestroForm(Form):
+class MaestroForm(FlaskForm): # Cambiar Form por FlaskForm
     matricula = IntegerField('Matricula', [
         validators.DataRequired(message='La matricula es requerida')
     ])

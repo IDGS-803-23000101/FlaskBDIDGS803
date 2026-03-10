@@ -33,17 +33,31 @@ def detalles():
     maes = Maestros.query.filter_by(matricula=matricula).first()
     if not maes:
         return redirect(url_for('maestros.lista_maestros'))
-    return render_template("maestros/detallesMaes.html", maestro=maes)
+    
+    form = forms.MaestroForm(obj=maes)
+    
+    return render_template("maestros/detallesMaes.html", 
+                           maestro=maes, 
+                           form=form, 
+                           nombre=maes.nombre, 
+                           apellidos=maes.apellidos, 
+                           especialidad=maes.especialidad, 
+                           correo=maes.email)
 
 @maestros.route("/maestros/modificar", methods=['GET', 'POST'])
 def modificar():
-    matricula = request.args.get('matricula')
+    
+    matricula = request.args.get('matricula') or request.form.get('matricula')
     maes1 = Maestros.query.filter_by(matricula=matricula).first()
+    
     if not maes1:
         return redirect(url_for('maestros.lista_maestros'))
 
+    
     create_form = forms.MaestroForm(request.form)
+    
     if request.method == 'GET':
+    
         create_form.matricula.data = maes1.matricula
         create_form.nombre.data = maes1.nombre
         create_form.apellidos.data = maes1.apellidos
@@ -51,26 +65,35 @@ def modificar():
         create_form.email.data = maes1.email
             
     if request.method == 'POST' and create_form.validate():
+    
         maes1.nombre = create_form.nombre.data
         maes1.apellidos = create_form.apellidos.data
         maes1.especialidad = create_form.especialidad.data
         maes1.email = create_form.email.data
+        
+        db.session.add(maes1) 
         db.session.commit()
         return redirect(url_for('maestros.lista_maestros'))
+        
     return render_template("maestros/modificarMaes.html", form=create_form)
 
 @maestros.route("/maestros/eliminar", methods=['GET', 'POST'])
 def eliminar():
     matricula = request.args.get('matricula') or request.form.get('matricula')
     maes = Maestros.query.filter_by(matricula=matricula).first()
+    
     if not maes:
         return redirect(url_for('maestros.lista_maestros'))
 
+    
     form = forms.MaestroForm(request.form, obj=maes)
+    
+    
     if request.method == 'POST':
         db.session.delete(maes)
         db.session.commit()
         return redirect(url_for('maestros.lista_maestros'))
+            
     return render_template("maestros/eliminarMaes.html", form=form, maestro=maes)
 
 @maestros.route('/perfil/<nombre>')

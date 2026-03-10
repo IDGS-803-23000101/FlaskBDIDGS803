@@ -1,0 +1,54 @@
+{% extends "layout.html" %} 
+{% block container %} 
+{% import "_macros.html" as macros %}
+
+<div class="max-w-sm mx-auto">
+  <form action="{{ url_for('maestros.eliminar', matricula=form.matricula.data) }}" method="POST" novalidate>
+    {{ form.csrf_token }}
+    {{ form.matricula(style="display:none") }}
+
+    <div class="mb-5 text-center">
+      <h2 class="text-xl font-bold text-heading mb-4">¿Estás seguro de eliminar este maestro?</h2>
+      <p class="text-sm text-gray-500">Esta acción no se puede deshacer.</p>
+    </div>
+
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-heading">Matrícula</label>
+      {{ macros.campoNuevo(form.matricula, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-heading">Nombre</label>
+      {{ macros.campoNuevo(form.nombre, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-heading">Apellidos</label>
+      {{ macros.campoNuevo(form.apellidos, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-heading">Especialidad</label>
+      {{ macros.campoNuevo(form.especialidad, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-heading">Correo Electrónico</label>
+      {{ macros.campoNuevo(form.email, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <button
+          type="submit"
+          class="w-full text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all"
+        >
+          eliminar
+        </button>
+
+      <a href="{{ url_for('maestros.lista_maestros') }}" class="w-full text-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium font-medium rounded-base text-sm px-4 py-2.5 transition-all">
+        Cancelar y Regresar
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

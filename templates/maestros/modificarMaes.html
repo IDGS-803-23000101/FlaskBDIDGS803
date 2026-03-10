@@ -1,0 +1,46 @@
+{% extends "layout.html" %} 
+{% block container %} 
+{% import "_macros.html" as macros %}
+
+  <form action="" method="POST" novalidate class="max-w-sm mx-auto">
+    {{ form.csrf_token }}
+    
+    <div class="mb-5">
+      <h2 class="text-xl font-bold text-heading text-center mb-4">Modificar Datos del Maestro</h2>
+    </div>
+
+    <div class="mb-5">
+      
+      {{ macros.campoNuevo(form.matricula, readonly=True, class="bg-neutral-secondary-light border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 cursor-not-allowed") }}
+    </div>
+
+    <div class="mb-5">
+      {{ macros.campoNuevo(form.nombre, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+    </div>
+
+    <div class="mb-5">
+      {{ macros.campoNuevo(form.apellidos, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+    </div>
+
+    <div class="mb-5">
+      {{ macros.campoNuevo(form.especialidad, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+    </div>
+
+    <div class="mb-5">
+      {{ macros.campoNuevo(form.email, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+    </div>
+
+    <div class="flex flex-col gap-3">
+        <button
+          type="submit"
+          class="w-full text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all"
+        >
+          Guardar Cambios
+        </button>
+
+        <a href="{{ url_for('maestros.lista_maestros') }}" class="w-full text-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium font-medium rounded-base text-sm px-4 py-2.5 transition-all">
+          Cancelar y Regresar
+        </a>
+    </div>
+  </form>
+{% endblock %}

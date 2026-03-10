@@ -6,16 +6,19 @@ from flask_wtf.csrf import CSRFProtect
 from config import DevelopmentConfig
 from flask import g 
 from flask_migrate import Migrate
+from maestros.routes import maestros
 
 
 import forms
 from models import db
 from models import Alumnos
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'una_clave_muy_secreta_123'
+csrf=CSRFProtect(app)
 app.config.from_object(DevelopmentConfig)
 db.init_app(app)
 migrate = Migrate(app, db)
-csrf=CSRFProtect()
+app.register_blueprint(maestros)
 
 @app.errorhandler(404)
 def page_not_found(e):

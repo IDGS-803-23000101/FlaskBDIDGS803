@@ -15,3 +15,21 @@ class UserForm(Form):
     email = EmailField('Correo', [
         validators.Email(message='Ingrese un correo valido')
     ])
+    
+class MaestroForm(Form):
+    matricula = IntegerField('Matricula', [
+        validators.DataRequired(message='La matricula es requerida')
+    ])
+    nombre = StringField('Nombre', [
+        validators.DataRequired(message='El campo es requerido'),
+        validators.length(min=4, max=10, message='Ingrese nombre valido')
+    ])
+    apellidos = StringField('Apellidos', [
+        validators.DataRequired(message='El campo es requerido')
+    ])
+    especialidad = StringField('Especialidad', [
+        validators.DataRequired(message='La especialidad es requerida')
+    ])
+    email = EmailField('Correo', [
+        validators.Email(message='Ingrese un correo valido')
+    ])

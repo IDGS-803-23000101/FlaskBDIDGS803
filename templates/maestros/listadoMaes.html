@@ -1,0 +1,44 @@
+{% extends "layout.html" %} 
+
+{% block container %} 
+
+<div class="relative overflow-x-auto">
+    <a href="{{ url_for('maestros.crear_maestros') }}" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Agregar maestro</a>
+    
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="text-sm text-body bg-neutral-secondary-medium">
+            <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-base font-medium">Nombre</th>
+                <th scope="col" class="px-6 py-3 font-medium">Apellidos</th>
+                <th scope="col" class="px-6 py-3 font-medium">Especialidad</th>
+                <th scope="col" class="px-6 py-3 rounded-e-base font-medium">Correo</th>
+                <th scope="col" class="px-6 py-3 font-medium">Editar</th>
+                <th scope="col" class="px-6 py-3 font-medium">Detalles</th>
+                <th scope="col" class="px-6 py-3 font-medium">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maes in maestros %}
+            <tr class="bg-neutral-primary border-b">
+                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                    {{maes.nombre}}
+                </th>
+                <td class="px-6 py-4">{{maes.apellidos}}</td>
+                <td class="px-6 py-4">{{maes.especialidad}}</td>
+                <td class="px-6 py-4">{{maes.email}}</td>
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('maestros.modificar', matricula=maes.matricula) }}" class="font-bold text-indigo-600 hover:text-indigo-900">Editar</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('maestros.detalles', matricula=maes.matricula) }}" class="font-bold text-emerald-600 hover:text-emerald-900">Detalles</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('maestros.eliminar', matricula=maes.matricula) }}" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

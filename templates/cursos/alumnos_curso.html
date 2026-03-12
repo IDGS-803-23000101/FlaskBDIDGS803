@@ -1,0 +1,7 @@
+<h2>Alumnos del curso {{ curso.nombre }}</h2>
+
+<ul>
+{% for alumno in curso.alumnos %}
+<li>{{ alumno.nombre }}</li>
+{% endfor %}
+</ul>

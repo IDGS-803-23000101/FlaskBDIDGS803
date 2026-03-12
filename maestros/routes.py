@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 import forms
 from models import db, Maestros
 
-# Definimos el blueprint
 maestros = Blueprint('maestros', __name__)
 
 @maestros.route("/maestros", methods=['GET', 'POST'])

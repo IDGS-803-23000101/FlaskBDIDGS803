@@ -5,7 +5,7 @@
 
 
 <div class="relative overflow-x-auto">
-    <a href="Alumnos" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Agregar alumno</a>
+    <a href="agregar_alumno" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Agregar alumno</a>
     <table class="w-full text-sm text-left rtl:text-right text-body">
         <thead class="text-sm text-body bg-neutral-secondary-medium">
             <tr>
@@ -29,6 +29,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
                     Eliminar
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Cursos
                 </th>
             </tr>
         </thead>
@@ -55,6 +58,9 @@
                 </td>
                 <td class="px-6 py-4">
                     <a href="eliminar?id={{ alum.id }}" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="cursos_alumno?id={{ alum.id }}" class="font-bold text-cyan-600 hover:text-cyan-900">Cursos</a>
                 </td>
             </tr>
             {% endfor %}

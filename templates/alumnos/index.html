@@ -2,12 +2,23 @@
 
 {% block container %} 
 
+<div class="relative overflow-x-auto mt-8">
+    
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-heading">Listado de Alumnos</h2>
+        
+        <div class="flex gap-3">
+            <a href="{{ url_for('alumnos.agregar_alumno') }}" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all">
+                Agregar alumno
+            </a>
+            <a href="{{ url_for('cursos.inscribir') }}" class="text-brand bg-brand/10 border border-brand/20 hover:bg-brand/20 focus:ring-4 focus:ring-brand/10 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all">
+                Inscribir a un Curso
+            </a>
+        </div>
+    </div>
 
-
-<div class="relative overflow-x-auto">
-    <a href="agregar_alumno" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Agregar alumno</a>
-    <table class="w-full text-sm text-left rtl:text-right text-body">
-        <thead class="text-sm text-body bg-neutral-secondary-medium">
+    <table class="w-full text-sm text-left rtl:text-right text-body shadow-md sm:rounded-lg">
+        <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
             <tr>
                 <th scope="col" class="px-6 py-3 rounded-s-base font-medium">
                     Nombre
@@ -18,7 +29,7 @@
                 <th scope="col" class="px-6 py-3 font-medium">
                     Telefono
                 </th>
-                <th scope="col" class="px-6 py-3 rounded-e-base font-medium">
+                <th scope="col" class="px-6 py-3 font-medium">
                     Correo
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
@@ -30,14 +41,14 @@
                 <th scope="col" class="px-6 py-3 font-medium">
                     Eliminar
                 </th>
-                <th scope="col" class="px-6 py-3 font-medium">
+                <th scope="col" class="px-6 py-3 rounded-e-base font-medium">
                     Cursos
                 </th>
             </tr>
         </thead>
         <tbody>
             {% for alum in alumno %}
-            <tr class="bg-neutral-primary">
+            <tr class="bg-neutral-primary border-b border-default-medium hover:bg-neutral-tertiary-medium transition-colors">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
                     {{alum.nombre}}
                 </th>
@@ -60,13 +71,20 @@
                     <a href="eliminar?id={{ alum.id }}" class="font-bold text-rose-600 hover:text-rose-900">Eliminar</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="cursos_alumno?id={{ alum.id }}" class="font-bold text-cyan-600 hover:text-cyan-900">Cursos</a>
+                    <a href="{{ url_for('alumnos.cursos_alumno', id=alum.id) }}" class="font-bold text-cyan-600 hover:text-cyan-900">
+                        Cursos
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8" class="px-6 py-8 text-center text-body text-base">
+                    No hay alumnos registrados.
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
 
 {% endblock %}

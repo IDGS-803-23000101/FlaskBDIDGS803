@@ -13,7 +13,7 @@ from cursos.routes import cursos
 
 import forms
 from models import db
-from models import Alumnos
+from models import Alumno, Maestro, Curso
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'una_clave_muy_secreta_123'
 csrf=CSRFProtect(app)
@@ -31,6 +31,7 @@ def page_not_found(e):
 
 
 @app.route("/")
+@app.route("/index")
 def index():
 	return render_template("bienvenida.html")
 

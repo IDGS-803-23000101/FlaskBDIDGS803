@@ -1,17 +1,50 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
+{% block container %}
 
-{% block content %}
-{% import "_macros.html" as macros %}
+<div class="max-w-5xl mx-auto mt-16 px-4">
+    
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-heading mb-4 tracking-tight">
+            Bienvenido al <span class="text-brand">Sistema Escolar</span>
+        </h1>
+        <p class="text-lg text-body">
+            Seleccione una opción del menú para comenzar a administrar
+        </p>
+    </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <a href="{{ url_for('alumnos.lista_alumnos') }}" class="block p-8 bg-neutral-secondary-medium border border-default-medium rounded-base shadow-xs hover:bg-neutral-tertiary-medium transition-all group text-center">
+            <div class="w-16 h-16 mx-auto mb-5 bg-brand/10 text-brand rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-heading mb-2">Alumnos</h3>
+            <p class="text-sm text-body">Administrar registros, ver detalles y consultar las inscripciones de los estudiantes.</p>
+        </a>
 
-<h1>Bienvenido al sistema escolar</h1>
+        <a href="/maestros" class="block p-8 bg-neutral-secondary-medium border border-default-medium rounded-base shadow-xs hover:bg-neutral-tertiary-medium transition-all group text-center">
+            <div class="w-16 h-16 mx-auto mb-5 bg-brand/10 text-brand rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-heading mb-2">Maestros</h3>
+            <p class="text-sm text-body">Gestionar la plantilla docente, altas, bajas y actualización de perfiles.</p>
+        </a>
 
-<p>Seleccione una opción del menú</p>
+        <a href="/cursos" class="block p-8 bg-neutral-secondary-medium border border-default-medium rounded-base shadow-xs hover:bg-neutral-tertiary-medium transition-all group text-center">
+            <div class="w-16 h-16 mx-auto mb-5 bg-brand/10 text-brand rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-heading mb-2">Cursos</h3>
+            <p class="text-sm text-body">Crear materias, asignar maestros y revisar listas de alumnos inscritos.</p>
+        </a>
 
-<ul>
-<li><a href="/Alumnos">Alumnos</a></li>
-<li><a href="/maestros">Maestros</a></li>
-<li><a href="/cursos">Cursos</a></li>
-</ul>
+    </div>
+</div>
 
 {% endblock %}

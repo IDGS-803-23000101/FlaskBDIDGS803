@@ -1,9 +1,10 @@
-from flask_wtf import FlaskForm  # Cambiar esta importación
-from wtforms import StringField, IntegerField
+from flask_wtf import FlaskForm 
+from wtforms import StringField, IntegerField, SubmitField, SelectField
 from wtforms import EmailField
 from wtforms import validators
+from wtforms.validators import DataRequired
 
-class UserForm(FlaskForm): # Cambiar Form por FlaskForm
+class UserForm(FlaskForm): 
     id = IntegerField('Id')
     nombre = StringField('Nombre', [
         validators.DataRequired(message='El campo es requerido'),
@@ -16,7 +17,7 @@ class UserForm(FlaskForm): # Cambiar Form por FlaskForm
         validators.Email(message='Ingrese un correo valido')
     ])
     
-class MaestroForm(FlaskForm): # Cambiar Form por FlaskForm
+class MaestroForm(FlaskForm):
     matricula = IntegerField('Matricula', [
         validators.DataRequired(message='La matricula es requerida')
     ])
@@ -33,3 +34,15 @@ class MaestroForm(FlaskForm): # Cambiar Form por FlaskForm
     email = EmailField('Correo', [
         validators.Email(message='Ingrese un correo valido')
     ])
+    
+class InscripcionForm(FlaskForm):
+    alumno_id = SelectField('Seleccionar Alumno', coerce=int, validators=[DataRequired()])
+    curso_id = SelectField('Seleccionar Curso', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Inscribir')
+    
+class CursoForm(FlaskForm):
+    nombre = StringField('Nombre del Curso', validators=[DataRequired()])
+    descripcion = StringField('Descripción')
+    # Este menú desplegable mostrará a los maestros registrados
+    maestro_id = SelectField('Maestro que lo imparte', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Crear Curso')

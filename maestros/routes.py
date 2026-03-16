@@ -1,20 +1,24 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 import forms
-from models import db, Maestros
+from models import db, Maestro
 
 maestros = Blueprint('maestros', __name__)
 
 @maestros.route("/maestros", methods=['GET', 'POST'])
 def lista_maestros():
     create_form = forms.MaestroForm(request.form)
-    maestros_list = Maestros.query.all()
+    maestros_list = Maestro.query.all()
     return render_template("maestros/listadoMaes.html", form=create_form, maestros=maestros_list)
 
 @maestros.route("/maestros/crear", methods=['GET', 'POST'])
 def crear_maestros():
     create_form = forms.MaestroForm(request.form)
     if request.method == 'POST' and create_form.validate():
-        maes = Maestros(
+        existing = Maestro.query.filter_by(matricula=create_form.matricula.data).first()
+        if existing:
+            flash('Actualmente ya exite un profesor con esa matricula','danger')
+            return render_template('maestros/crearMaes.html', form=create_form)
+        maes = Maestro(
             matricula=create_form.matricula.data,
             nombre=create_form.nombre.data,
             apellidos=create_form.apellidos.data,
@@ -29,7 +33,7 @@ def crear_maestros():
 @maestros.route("/maestros/detalles", methods=['GET'])
 def detalles():
     matricula = request.args.get('matricula')
-    maes = Maestros.query.filter_by(matricula=matricula).first()
+    maes = Maestro.query.filter_by(matricula=matricula).first()
     if not maes:
         return redirect(url_for('maestros.lista_maestros'))
     
@@ -47,7 +51,7 @@ def detalles():
 def modificar():
     
     matricula = request.args.get('matricula') or request.form.get('matricula')
-    maes1 = Maestros.query.filter_by(matricula=matricula).first()
+    maes1 = Maestro.query.filter_by(matricula=matricula).first()
     
     if not maes1:
         return redirect(url_for('maestros.lista_maestros'))
@@ -79,7 +83,7 @@ def modificar():
 @maestros.route("/maestros/eliminar", methods=['GET', 'POST'])
 def eliminar():
     matricula = request.args.get('matricula') or request.form.get('matricula')
-    maes = Maestros.query.filter_by(matricula=matricula).first()
+    maes = Maestro.query.filter_by(matricula=matricula).first()
     
     if not maes:
         return redirect(url_for('maestros.lista_maestros'))

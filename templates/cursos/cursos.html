@@ -1,17 +1,61 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
-{% block content %}
+{% block container %} 
 
-<h2>Lista de cursos</h2>
+<div class="relative overflow-x-auto mt-8">
+    
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-heading">Listado de Cursos</h2>
+        
+        <a href="{{ url_for('cursos.crear_curso') }}" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Agregar curso
+        </a>
+    </div>
 
-<ul>
-{% for curso in cursos %}
-
-<li>
-{{curso.nombre}}
-</li>
-
-{% endfor %}
-</ul>
+    <table class="w-full text-sm text-left rtl:text-right text-body shadow-md sm:rounded-lg">
+        <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
+            <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-base font-medium">
+                    Nombre
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Descripción
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Maestro
+                </th>
+                <th scope="col" class="px-6 py-3 rounded-e-base font-medium">
+                    Inscritos
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr class="bg-neutral-primary border-b border-default-medium hover:bg-neutral-tertiary-medium transition-colors">
+                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                    {{ curso.nombre }}
+                </th>
+                <td class="px-6 py-4 truncate max-w-xs">
+                    {{ curso.descripcion }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('cursos.alumnos_por_curso', curso_id=curso.id) }}" class="font-bold text-cyan-600 hover:text-cyan-900">
+                        Ver Alumnos
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="px-6 py-8 text-center text-body text-base">
+                    Aún no hay cursos registrados.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
